@@ -31,30 +31,32 @@ export default async function Page() {
             <li key={job.id}>{job.position}</li>
           ))}
         </ul> */}
-        <div className="pt-[213px] px-6">
-          <div className="max-w-sm rounded overflow-hidden bg-white shadow-lg  p-6">
-            <div className="flex items-center mb-4">
-                <div className="bg-gray-200 p-3 rounded-full">
-                    {/* Placeholder for company logo */}
-                    <svg className="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z"></path>
-                    </svg>
-                </div>
-                <div className="ml-4">
-                    <div className="text-gray-900 font-bold text-xl">Photosnap</div>
-                    <div className="text-gray-600">Senior Frontend Developer</div>
-                </div>
+        <div className="pt-[172px] px-6">
+          {jobs.map((job: Job) => (
+            <div key={job.id} className="mt-10 max-w-sm rounded overflow-hidden bg-white shadow-lg p-6">
+              <div className="flex items-center mb-4">
+                  <div className="bg-gray-200 p-3 rounded-full">
+                      {/* Placeholder for company logo */}
+                      <svg className="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z"></path>
+                      </svg>
+                  </div>
+                  <div className="ml-4">
+                      <div className="text-gray-900 font-bold text-xl">Photosnap</div>
+                      <div className="text-gray-600">Senior Frontend Developer</div>
+                  </div>
+              </div>
+              <div className="text-gray-700 mb-4">
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Full Time</span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">USA only</span>
+              </div>
+              <div className="border-t border-gray-200 pt-4">
+                  <div className="text-gray-600 text-sm mb-2">Frontend</div>
+                  <div className="text-gray-600 text-sm mb-2">Senior</div>
+                  <div className="text-gray-600 text-sm">HTML</div>
+              </div>
             </div>
-            <div className="text-gray-700 mb-4">
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Full Time</span>
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">USA only</span>
-            </div>
-            <div className="border-t border-gray-200 pt-4">
-                <div className="text-gray-600 text-sm mb-2">Frontend</div>
-                <div className="text-gray-600 text-sm mb-2">Senior</div>
-                <div className="text-gray-600 text-sm">HTML</div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
