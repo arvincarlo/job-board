@@ -1,4 +1,5 @@
 import { getJobs } from "@/app/_services/data-service";
+import Image from "next/image";
 // import desktop_bg from "@/public/images/bg-header-desktop.svg";
 // import mobile_bg from "@/public/images/bg-header-mobile.svg";
 // import Image from "next/image";
@@ -21,6 +22,7 @@ interface Job {
 
 export default async function Page() {
   const jobs = await getJobs();
+
   console.log(jobs);
 
   return (
@@ -35,25 +37,37 @@ export default async function Page() {
           {jobs.map((job: Job) => (
             <div key={job.id} className="mt-10 max-w-sm rounded overflow-hidden bg-white shadow-lg p-6">
               <div className="flex items-center mb-4">
-                  <div className="bg-gray-200 p-3 rounded-full">
-                      {/* Placeholder for company logo */}
-                      <svg className="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z"></path>
-                      </svg>
+                  <div className="relative h-12 w-12 aspect-auto">
+                    <Image fill className="object-cover" src={job.logo} alt={`${job.id}`} />
                   </div>
                   <div className="ml-4">
-                      <div className="text-gray-900 font-bold text-xl">Photosnap</div>
-                      <div className="text-gray-600">Senior Frontend Developer</div>
+                      <div className="flex gap-2">
+                        <div className="text-gray-900 font-bold text-base">{job.company}</div>
+
+                          <div className="flex items-center">
+                            {job.new && <span className="flexinline-block bg-primary rounded-full px-2 py-[2px] text-sm  text-white mr-2 items-center align-middle">NEW!</span>}
+                            {job.featured && <span className="inline-block bg-darkgray rounded-full px-2 py-[2px] text-sm  text-white">FEATURED</span>}
+                          </div>
+                      </div>
+                      <div className="text-gray-600 font-semibold text-lg">{job.position}</div>
                   </div>
               </div>
-              <div className="text-gray-700 mb-4">
-                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Full Time</span>
-                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">USA only</span>
+              <div className="flex space-x-2 text-custom-grayish-cyan text-base">
+                <span>{job.postedAt}</span>
+                <span>-</span>
+                <span>{job.contract}</span>
+                <span>-</span>
+                <span>{job.location}</span>
               </div>
-              <div className="border-t border-gray-200 pt-4">
-                  <div className="text-gray-600 text-sm mb-2">Frontend</div>
-                  <div className="text-gray-600 text-sm mb-2">Senior</div>
-                  <div className="text-gray-600 text-sm">HTML</div>
+              <div className="flex border-t border-gray-200 pt-4">
+              </div>
+              <div className="flex gap-2 flex-wrap">
+                {job.languages.map(language => (
+                  <span key={language} className="inline-block bg-light-grayish-cyan-tablets  rounded px-2 py-1 text-base font-semibold text-primary mr-2">{language}</span>
+                ))}
+                {job.tools.map(tool => (
+                  <span key={tool} className="inline-block bg-light-grayish-cyan-tablets rounded px-2 py-1 text-base font-semibold text-primary mr-2">{tool}</span>
+                ))}
               </div>
             </div>
           ))}
