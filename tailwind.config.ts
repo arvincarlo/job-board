@@ -11,6 +11,7 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        'custom-light-cyan': 'hsl(180, 52%, 96%)',
       },
       backgroundImage: {
         'mobile-image': "url('/images/bg-header-mobile.svg')",
