@@ -33,32 +33,33 @@ export default async function Page() {
             <li key={job.id}>{job.position}</li>
           ))}
         </ul> */}
-        <div className="pt-[172px] px-6">
+        <div className="pt-[172px] px-6 lg:mx-36">
           {jobs.map((job: Job) => (
-            <div key={job.id} className={`mt-10 max-w-sm rounded overflow-hidden bg-white shadow-lg p-6 ${job.new || job.featured ? 'border-l-[5px] border-l-primary' : null}`}>
-              <div className="flex items-center mb-4">
-                  <div className="relative aspect-square h-12 w-12">
-                    <Image fill className="object-cover" src={job.logo} alt={`${job.id}`} />
-                  </div>
-                  <div className="ml-4">
-                      <div className="flex gap-2">
-                        <div className="text-gray-900 font-bold text-base">{job.company}</div>
+            <div key={job.id} className={`lg:flex lg:items-center lg:justify-between mt-10 max-w-sm lg:max-w-full rounded overflow-hidden bg-white shadow-lg p-6 ${job.new || job.featured ? 'border-l-[5px] border-l-primary' : null}`}>
+              <div className="flex grow items-center mb-4">
+                <div className="relative aspect-square h-12 w-12 lg:h-24 lg:w-24">
+                  <Image fill className="object-cover" src={job.logo} alt={`${job.id}`} />
+                </div>
+                <div className="ml-4">
+                  <div className="flex gap-2">
+                    <div className="text-primary font-medium text-base lg:text-lg">{job.company}</div>
 
-                          <div className="flex items-center">
-                            {job.new && <span className="flexinline-block bg-primary rounded-full px-2 py-[2px] text-sm  text-white mr-2 items-center align-middle">NEW!</span>}
-                            {job.featured && <span className="inline-block bg-darkgray rounded-full px-2 py-[2px] text-sm  text-white">FEATURED</span>}
-                          </div>
+                      <div className="flex items-center">
+                        {job.new && <span className="flexinline-block bg-primary rounded-full px-2 py-[2px] text-sm  text-white mr-2 items-center align-middle">NEW!</span>}
+                        {job.featured && <span className="inline-block bg-darkgray rounded-full px-2 py-[2px] text-sm  text-white">FEATURED</span>}
                       </div>
-                      <div className="text-gray-600 font-semibold text-lg">{job.position}</div>
                   </div>
+                  <div className="text-gray-600 font-semibold text-lg lg:text-2xl">{job.position}</div>
+                  <div className="flex space-x-2 text-custom-grayish-cyan text-base lg:text-lg">
+                    <span>{job.postedAt}</span>
+                    <span>-</span>
+                    <span>{job.contract}</span>
+                    <span>-</span>
+                    <span>{job.location}</span>
+                  </div>
+                </div>
               </div>
-              <div className="flex space-x-2 text-custom-grayish-cyan text-base">
-                <span>{job.postedAt}</span>
-                <span>-</span>
-                <span>{job.contract}</span>
-                <span>-</span>
-                <span>{job.location}</span>
-              </div>
+              
               <div className="flex border-t border-gray-200 mt-2 pt-4">
               </div>
               <div className="flex gap-2 flex-wrap">
