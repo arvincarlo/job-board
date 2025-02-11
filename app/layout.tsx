@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { League_Spartan } from "next/font/google";
 import "./globals.css";
 
+import { JobsProvider } from "@/app/_context/JobsContext";
+
 const font = League_Spartan({
   weight: "500",
   subsets: ["latin"],
@@ -22,7 +24,9 @@ export default function RootLayout({
       <body
         className={`${font.className}`}
       >
-        {children}
+        <JobsProvider>
+          {children}
+        </JobsProvider>
       </body>
     </html>
   );

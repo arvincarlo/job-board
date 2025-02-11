@@ -1,5 +1,8 @@
-import { getJobs } from "@/app/_services/data-service";
+"use client"
+
+// import { getJobs } from "@/app/_services/data-service";
 import Image from "next/image";
+import { useJobs } from "./_context/JobsContext";
 
 interface Job {
   id: number;
@@ -17,10 +20,9 @@ interface Job {
   tools: string[];
 }
 
-export default async function Page() {
-  const jobs = await getJobs();
-
-  console.log(jobs);
+export default function Page() {
+  const { jobs, filter, dispatch } = useJobs();
+  console.log(filter);
 
   return (
     <div className="bg-custom-light-cyan">
@@ -28,7 +30,7 @@ export default async function Page() {
         
         <div className="pt-[120px] lg:pt-48 px-6 lg:mx-36">
           {/* filter */}
-          <div className="flex bg-white shadow-lg p-5 rounded items-center justify-between">
+          {filter.length > 0 && <div className="flex bg-white shadow-lg p-5 rounded items-center justify-between">
             <div className="flex flex-wrap gap-4">
               <div>
                 <span className="inline-block bg-light-grayish-cyan-tablets rounded px-2 py-1 text-base font-semibold text-primary focus:bg-primary focus:text-white">Javascript</span>
@@ -46,9 +48,9 @@ export default async function Page() {
             <div>
               <button className="text-custom-grayish-cyan">Clear</button>
             </div>
-          </div>
+          </div>}
           {/* Jobs */}
-          {jobs.map((job: Job) => (
+          {jobs?.map((job: Job) => (
             <div key={job.id} className={`lg:flex lg:items-center lg:justify-between mt-10 max-w-sm lg:max-w-full rounded overflow-hidden bg-white shadow-lg p-6 ${job.new || job.featured ? 'border-l-[5px] border-l-primary' : null}`}>
               <div className="flex grow items-center mb-4 lg:gap-2">
                 <div className="relative aspect-square h-12 w-12 lg:h-24 lg:w-24">
@@ -79,7 +81,7 @@ export default async function Page() {
               <div className="flex gap-2 flex-wrap">
                 {
                   [...job.languages, ...job.tools].map(item => (
-                    <button key={item} className="inline-block bg-light-grayish-cyan-tablets rounded px-2 py-1 text-base font-semibold text-primary mr-2 focus:bg-primary focus:text-white">{item}</button>
+                    <button onClick={() => dispatch({type: "filter/set", payload: item})} key={item} className="inline-block bg-light-grayish-cyan-tablets rounded px-2 py-1 text-base font-semibold text-primary mr-2 focus:bg-primary focus:text-white">{item}</button>
                   ))
                 }
               </div>
