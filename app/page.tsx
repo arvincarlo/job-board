@@ -1,4 +1,7 @@
 import { getJobs } from "@/app/_services/data-service";
+// import desktop_bg from "@/public/images/bg-header-desktop.svg";
+// import mobile_bg from "@/public/images/bg-header-mobile.svg";
+// import Image from "next/image";
 
 interface Job {
   id: number;
@@ -21,16 +24,18 @@ export default async function Page() {
   console.log(jobs);
 
   return (
-    <div>
-      <h1 className="underline text-emerald-400">List of Jobs</h1>
-      <p>
-        This is a list of available software engineering roles at various companies.
-      </p>
-      <ul>
-        {jobs.map((job: Job) => (
-          <li key={job.id}>{job.position}</li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <div className="bg-mobile-image bg-contain lg:bg-desktop-image bg-no-repeat w-full h-auto ">
+        test
+        <ul>
+          {jobs.map((job: Job) => (
+            <li key={job.id}>{job.position}</li>
+          ))}
+        </ul>
+        test
+        test
+        test
+      </div>
+    </>
   );
 }
