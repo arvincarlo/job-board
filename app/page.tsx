@@ -1,8 +1,5 @@
 import { getJobs } from "@/app/_services/data-service";
 import Image from "next/image";
-// import desktop_bg from "@/public/images/bg-header-desktop.svg";
-// import mobile_bg from "@/public/images/bg-header-mobile.svg";
-// import Image from "next/image";
 
 interface Job {
   id: number;
@@ -28,12 +25,29 @@ export default async function Page() {
   return (
     <div className="bg-custom-light-cyan">
       <div className="bg-mobile-image bg-contain lg:bg-desktop-image bg-no-repeat w-full h-auto ">
-        {/* <ul>
-          {jobs.map((job: Job) => (
-            <li key={job.id}>{job.position}</li>
-          ))}
-        </ul> */}
-        <div className="pt-[172px] lg:pt-48 px-6 lg:mx-36">
+        
+        <div className="pt-[120px] lg:pt-48 px-6 lg:mx-36">
+          {/* filter */}
+          <div className="flex bg-white shadow-lg p-5 rounded items-center justify-between">
+            <div className="flex flex-wrap gap-4">
+              <div>
+                <span className="inline-block bg-light-grayish-cyan-tablets rounded px-2 py-1 text-base font-semibold text-primary focus:bg-primary focus:text-white">Javascript</span>
+                <button className="text-white bg-primary px-2 py-1">X</button>
+              </div>
+              <div>
+                <span className="inline-block bg-light-grayish-cyan-tablets rounded px-2 py-1 text-base font-semibold text-primary focus:bg-primary focus:text-white">Javascript</span>
+                <button className="text-white bg-primary px-2 py-1">X</button>
+              </div>
+              <div>
+                <span className="inline-block bg-light-grayish-cyan-tablets rounded px-2 py-1 text-base font-semibold text-primary focus:bg-primary focus:text-white">Javascript</span>
+                <button className="text-white bg-primary px-2 py-1">X</button>
+              </div>
+            </div>
+            <div>
+              <button className="text-custom-grayish-cyan">Clear</button>
+            </div>
+          </div>
+          {/* Jobs */}
           {jobs.map((job: Job) => (
             <div key={job.id} className={`lg:flex lg:items-center lg:justify-between mt-10 max-w-sm lg:max-w-full rounded overflow-hidden bg-white shadow-lg p-6 ${job.new || job.featured ? 'border-l-[5px] border-l-primary' : null}`}>
               <div className="flex grow items-center mb-4 lg:gap-2">
