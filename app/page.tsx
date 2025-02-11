@@ -37,7 +37,7 @@ export default async function Page() {
           {jobs.map((job: Job) => (
             <div key={job.id} className={`mt-10 max-w-sm rounded overflow-hidden bg-white shadow-lg p-6 ${job.new || job.featured ? 'border-l-[5px] border-l-primary' : null}`}>
               <div className="flex items-center mb-4">
-                  <div className="relative h-12 w-12 aspect-auto">
+                  <div className="relative aspect-square h-12 w-12">
                     <Image fill className="object-cover" src={job.logo} alt={`${job.id}`} />
                   </div>
                   <div className="ml-4">
@@ -59,7 +59,7 @@ export default async function Page() {
                 <span>-</span>
                 <span>{job.location}</span>
               </div>
-              <div className="flex border-t border-gray-200 pt-4">
+              <div className="flex border-t border-gray-200 mt-2 pt-4">
               </div>
               <div className="flex gap-2 flex-wrap">
                 {job.languages.map(language => (
