@@ -21,32 +21,28 @@ interface Job {
 }
 
 export default function Page() {
-  const { jobs, filter, dispatch } = useJobs();
-  console.log(filter);
+  const { jobs, filters, dispatch } = useJobs();
+  console.log(jobs);
+  console.log(filters);
 
   return (
     <div className="bg-custom-light-cyan">
       <div className="bg-mobile-image bg-contain lg:bg-desktop-image bg-no-repeat w-full h-auto ">
         
         <div className="pt-[120px] lg:pt-48 px-6 lg:mx-36">
-          {/* filter */}
-          {filter.length > 0 && <div className="flex bg-white shadow-lg p-5 rounded items-center justify-between">
+          {/* filters */}
+          {filters.length > 0 && <div className="flex bg-white shadow-lg p-5 rounded items-center justify-between">
             <div className="flex flex-wrap gap-4">
-              <div>
-                <span className="inline-block bg-light-grayish-cyan-tablets rounded px-2 py-1 text-base font-semibold text-primary focus:bg-primary focus:text-white">Javascript</span>
-                <button className="text-white bg-primary px-2 py-1">X</button>
-              </div>
-              <div>
-                <span className="inline-block bg-light-grayish-cyan-tablets rounded px-2 py-1 text-base font-semibold text-primary focus:bg-primary focus:text-white">Javascript</span>
-                <button className="text-white bg-primary px-2 py-1">X</button>
-              </div>
-              <div>
-                <span className="inline-block bg-light-grayish-cyan-tablets rounded px-2 py-1 text-base font-semibold text-primary focus:bg-primary focus:text-white">Javascript</span>
-                <button className="text-white bg-primary px-2 py-1">X</button>
-              </div>
+              {/* Filter Tabs */}
+              {filters.map((item:string) => (
+                <div key={item}>
+                  <span className="inline-block bg-light-grayish-cyan-tablets rounded px-2 py-1 text-base font-semibold text-primary focus:bg-primary focus:text-white">{item}</span>
+                  <button onClick={() => dispatch({type:"filters/unset", payload: item})} className="text-white bg-primary px-2 py-1">X</button>
+                </div>
+              ))}
             </div>
             <div>
-              <button className="text-custom-grayish-cyan">Clear</button>
+              <button onClick={() => dispatch({type:"filters/clear"})} className="text-custom-grayish-cyan">Clear</button>
             </div>
           </div>}
           {/* Jobs */}
@@ -81,7 +77,7 @@ export default function Page() {
               <div className="flex gap-2 flex-wrap">
                 {
                   [...job.languages, ...job.tools].map(item => (
-                    <button onClick={() => dispatch({type: "filter/set", payload: item})} key={item} className="inline-block bg-light-grayish-cyan-tablets rounded px-2 py-1 text-base font-semibold text-primary mr-2 focus:bg-primary focus:text-white">{item}</button>
+                    <button onClick={() => dispatch({type: "filters/set", payload: item})} key={item} className="inline-block bg-light-grayish-cyan-tablets rounded px-2 py-1 text-base font-semibold text-primary mr-2 focus:bg-primary focus:text-white">{item}</button>
                   ))
                 }
               </div>

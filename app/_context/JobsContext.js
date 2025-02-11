@@ -5,7 +5,7 @@ import { createContext, useContext, useReducer, useEffect } from "react";
 const API_URL = "http://localhost:9000";
 
 const initialState = {
-    filter: [],
+    filters: [],
     jobs: [],
     error: null,
 }
@@ -22,10 +22,20 @@ function reducer(state, action) {
                 ...state,
                 error: action.payload
             };
-        case "filter/set": 
+        case "filters/set": 
             return {
                 ...state, 
-                filter: [...new Set([...state.filter, action.payload])]
+                filters: [...new Set([...state.filters, action.payload])]
+            };
+        case "filters/clear": 
+            return {
+                ...state, 
+                filters: []
+            };
+        case "filters/unset": 
+            return {
+                ...state, 
+                filters: state.filters.filter((item) => item !== action.payload)
             };
         default:
             return state;
@@ -52,12 +62,15 @@ function JobsProvider({children}) {
     }, []);
 
 
-    const [{jobs, filter}, dispatch] = useReducer(reducer, initialState);
+    const [{jobs, filters}, dispatch] = useReducer(reducer, initialState);
+
+    // Filter all jobs based on set filters
+    const filteredJobs = jobs;
 
     return (
         <JobsContext.Provider value={{
-            jobs,
-            filter,
+            jobs: filteredJobs,
+            filters,
             dispatch
         }}>
             {children}
