@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${font.className}`}
+        className={`${font.className} bg-custom-light-cyan`}
       >
         <JobsProvider>
           {children}

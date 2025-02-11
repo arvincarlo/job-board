@@ -26,7 +26,7 @@ export default function Page() {
   console.log(filters);
 
   return (
-    <div className="bg-custom-light-cyan">
+    <div className="">
       <div className="bg-mobile-image bg-contain lg:bg-desktop-image bg-no-repeat w-full h-auto ">
         
         <div className="pt-[120px] lg:pt-48 px-6 lg:mx-36">
@@ -36,8 +36,8 @@ export default function Page() {
               {/* Filter Tabs */}
               {filters.map((item:string) => (
                 <div key={item}>
-                  <span className="inline-block bg-light-grayish-cyan-tablets rounded px-2 py-1 text-base font-semibold text-primary focus:bg-primary focus:text-white">{item}</span>
-                  <button onClick={() => dispatch({type:"filters/unset", payload: item})} className="text-white bg-primary px-2 py-1">X</button>
+                  <span className="inline-block bg-light-grayish-cyan-tablets rounded-tl-md rounded-bl-md px-2 py-1 text-base font-semibold text-primary focus:bg-primary focus:text-white">{item}</span>
+                  <button onClick={() => dispatch({type:"filters/unset", payload: item})} className="text-white bg-primary px-[10px] py-1 rounded-tr-md rounded-br-md font-semibold">x</button>
                 </div>
               ))}
             </div>
@@ -55,11 +55,10 @@ export default function Page() {
                 <div className="ml-4">
                   <div className="flex gap-2 lg:gap-4">
                     <div className="text-primary font-medium text-base lg:text-lg">{job.company}</div>
-
-                      <div className="flex items-center">
-                        {job.new && <span className="flexinline-block bg-primary rounded-full px-2 py-[2px] text-sm  text-white mr-2 items-center align-middle">NEW!</span>}
-                        {job.featured && <span className="inline-block bg-darkgray rounded-full px-2 py-[2px] text-sm  text-white">FEATURED</span>}
-                      </div>
+                    <div className="flex items-center">
+                      {job.new && <span className="inline-block bg-primary rounded-full px-2 py-[2px] text-sm  text-white mr-2 items-center align-middle">NEW!</span>}
+                      {job.featured && <span className="inline-block bg-darkgray rounded-full px-2 py-[2px] text-sm  text-white">FEATURED</span>}
+                    </div>
                   </div>
                   <div className="text-gray-600 font-semibold text-lg lg:text-2xl hover:text-primary hover:cursor-pointer">{job.position}</div>
                   <div className="flex space-x-2 text-custom-grayish-cyan text-base lg:text-lg">
@@ -74,6 +73,7 @@ export default function Page() {
               
               <div className="flex border-t border-gray-200 mt-2 pt-4">
               </div>
+
               <div className="flex gap-2 flex-wrap">
                 {
                   [...job.languages, ...job.tools].map(item => (
