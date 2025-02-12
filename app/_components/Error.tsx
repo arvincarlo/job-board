@@ -1,6 +1,6 @@
 export default function Error({ children }: { children: React.ReactNode }) {
     return (
-        <div>
+        <div className="text-center text-lg font-semibold">
             {children}
         </div>
     )

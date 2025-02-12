@@ -7,7 +7,7 @@ import Jobs from "./_components/Jobs";
 
 export default function Page() {
   const { jobs, error, filters } = useJobs();
-  
+
   return (
     <div className="">
       <div className="bg-mobile-image bg-contain lg:bg-desktop-image bg-no-repeat w-full h-auto">
@@ -19,7 +19,7 @@ export default function Page() {
           {filters.length > 0 && <Filters filters={filters}/>}
           
           {/* Jobs */}
-          {jobs?.length > 0 && <Jobs jobs={jobs}/>}
+          <Jobs jobs={jobs}/>
         </div>
       </div>
     </div>

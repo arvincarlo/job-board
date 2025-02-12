@@ -55,7 +55,7 @@ function JobsProvider({children}) {
             }
             catch (error) {
                 console.error(error);
-                dispatch({type: "jobs/error", payload: "There was an error fetching jobs"})
+                dispatch({type: "jobs/error", payload: "There was an error in fetching jobs"})
             }
         }
         fetchJobs();
@@ -64,11 +64,12 @@ function JobsProvider({children}) {
 
     const [{jobs, filters, error}, dispatch] = useReducer(reducer, initialState);
 
+    
     // Filter all jobs based on set filters
     const filteredJobs = jobs.filter(job => {
         // Combile languages and tools into 1 array
         const jobSkills = [...job.languages, ...job.tools];
-
+        
         // Check if every filter item exists in the jobs skills array
         return filters.every(item => jobSkills.includes(item));
     });
