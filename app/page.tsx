@@ -11,7 +11,7 @@ export default function Page() {
   return (
     <div className="">
       <div className="bg-mobile-image bg-contain lg:bg-desktop-image bg-no-repeat w-full h-auto">
-        <div className="pt-[120px] lg:pt-48 px-6 lg:mx-36">
+        <div className={`${filters.length > 0 ? 'pt-[120px]' : 'pt-44'} lg:pt-48 px-6 lg:mx-36`}>
           {/* Errors */}
           { error && <Error>{error}</Error>}
 
