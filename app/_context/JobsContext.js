@@ -55,14 +55,14 @@ function JobsProvider({children}) {
             }
             catch (error) {
                 console.error(error);
-                // dispatch({type: "jobs/error", payload: "There was an error fetching jobs"})
+                dispatch({type: "jobs/error", payload: "There was an error fetching jobs"})
             }
         }
         fetchJobs();
     }, []);
 
 
-    const [{jobs, filters}, dispatch] = useReducer(reducer, initialState);
+    const [{jobs, filters, error}, dispatch] = useReducer(reducer, initialState);
 
     // Filter all jobs based on set filters
     const filteredJobs = jobs.filter(job => {
@@ -77,6 +77,7 @@ function JobsProvider({children}) {
         <JobsContext.Provider value={{
             jobs: filteredJobs,
             filters,
+            error,
             dispatch
         }}>
             {children}
